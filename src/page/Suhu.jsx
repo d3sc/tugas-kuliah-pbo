@@ -77,7 +77,7 @@ export default function Suhu() {
               Temperature Value:
             </label>
             <input
-              type="text"
+              type="number"
               id="value"
               placeholder="Masukan Nilai Temperatur"
               value={value}

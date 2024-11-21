@@ -37,6 +37,7 @@ export default function BMI() {
             </label>
             <input
               type="number"
+              min="0"
               id="tinggi"
               required
               onChange={(e) => setTinggi(e.target.value)}

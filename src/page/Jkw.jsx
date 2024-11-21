@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import JkwCalculator from "../helpers/jkw"; 
+import JkwCalculator from "../helpers/jkw"; // Import JkwCalculator class
 
 export default function Jkw() {
-  const [jarak, setJarak] = useState("");  
-  const [kecepatan, setKecepatan] = useState(""); 
-  const [waktu, setWaktu] = useState(""); 
+  const [jarak, setJarak] = useState("");
+  const [kecepatan, setKecepatan] = useState("");
+  const [waktu, setWaktu] = useState("");
   const [hasil, setHasil] = useState("");
-  const [option, setOption] = useState("J-K"); 
+  const [option, setOption] = useState("K-W");
 
   const submit = (e) => {
     e.preventDefault();
-    const calculator = new JkwCalculator(jarak, kecepatan, waktu, option);
 
-    if ((option === "J-K" && (!jarak || !kecepatan)) || 
-        (option === "J-W" && (!jarak || !waktu)) ||
-        (option === "K-W" && (!kecepatan || !waktu))) {
-      setHasil("Error: Harap Periksa Input Anda");
+    // Validation for input values based on selected option
+    if ((option === "J-K" && (isNaN(parseFloat(kecepatan)) || isNaN(parseFloat(waktu)))) || 
+        (option === "J-W" && (isNaN(parseFloat(jarak)) || isNaN(parseFloat(kecepatan)))) ||
+        (option === "K-W" && (isNaN(parseFloat(jarak)) || isNaN(parseFloat(waktu))))) {
+      setHasil("Error: Harap masukkan angka yang valid.");
       return;
     }
 
+    const calculator = new JkwCalculator(jarak, kecepatan, waktu, option);
     const result = calculator.calculate();
+
     if (result.error) {
       setHasil(result.error);
     } else {
@@ -65,10 +67,11 @@ export default function Jkw() {
                   Kecepatan (km/jam):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="kecepatan"
                   placeholder="Masukkan Kecepatan"
                   value={kecepatan}
+                  min="0"
                   onChange={(e) => setKecepatan(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
@@ -79,10 +82,11 @@ export default function Jkw() {
                   Waktu (jam):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="waktu"
                   placeholder="Masukkan Waktu"
                   value={waktu}
+                  min="0"
                   onChange={(e) => setWaktu(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
@@ -97,10 +101,11 @@ export default function Jkw() {
                   Jarak (km):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="jarak"
                   placeholder="Masukkan Jarak"
                   value={jarak}
+                  min="0"
                   onChange={(e) => setJarak(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
@@ -111,10 +116,11 @@ export default function Jkw() {
                   Kecepatan (km/jam):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="kecepatan"
                   placeholder="Masukkan Kecepatan"
                   value={kecepatan}
+                  min="0"
                   onChange={(e) => setKecepatan(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
@@ -129,10 +135,11 @@ export default function Jkw() {
                   Jarak (km):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="jarak"
                   placeholder="Masukkan Jarak"
                   value={jarak}
+                  min="0"
                   onChange={(e) => setJarak(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
@@ -143,10 +150,11 @@ export default function Jkw() {
                   Waktu (jam):
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="waktu"
                   placeholder="Masukkan Waktu"
                   value={waktu}
+                  min="0"
                   onChange={(e) => setWaktu(e.target.value)}
                   className="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white"
                 />
