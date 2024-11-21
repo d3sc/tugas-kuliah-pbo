@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center bg-black min-h-screen text-white">
+    <div className="h-screen flex justify-center items-center bg-gray-900 text-white">
       <div className="grid grid-cols-2 gap-4">
         <a
           href="BMI"
@@ -12,10 +12,10 @@ export default function Home() {
         </a>
 
         <a
-          href="Kecepatan"
+          href="Jkw"
           className="flex justify-center items-center bg-gray-800 rounded-lg w-40 h-40 text-center"
         >
-          <span className="text-xl font-bold">Kecepatan</span>
+          <span className="text-xl font-bold">Jarak <br/> Kecepatan <br/> Waktu</span>
         </a>
 
         <a
