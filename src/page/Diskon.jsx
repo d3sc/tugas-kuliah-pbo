@@ -41,8 +41,7 @@ export default function Diskon() {
               Harga Asli:
             </label>
             <input
-              type="number"
-              min="0"
+              type="text"
               id="originalHarga"
               onChange={(e) => setHarga(formatInputToRupiah(e.target.value))}
               required
